@@ -13,16 +13,16 @@ public class Session {
 
 
     /**
-     * The logged-in user associated with this session
+     * The authenticated user associated with this session
      */
     private User user;
 
 
     /**
      * When a Session instance is created, it only stores the
-     * logged-in user. Other information may be added later on
+     * authenticated user. Other information may be added later on
      *
-     * @param user the logged-in user associated with this session
+     * @param user the authenticated user associated with this session
      */
     Session(User user) {
         this.user = user;
