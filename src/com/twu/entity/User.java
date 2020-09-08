@@ -4,7 +4,7 @@ package com.twu.entity;
 /**
  * The base class for all types of users with an immutable username
  */
-public class User {
+public abstract class User {
 
 
     protected final String USERNAME;
