@@ -32,7 +32,7 @@ public class PermissionManager {
 
 
     /**
-     * Do not let the class to be instantiated
+     * Do not let this class to be instantiated
      */
     private PermissionManager() {}
 
