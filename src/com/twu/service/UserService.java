@@ -105,10 +105,11 @@ public class UserService {
      * @param votes    the votes to be subtracted from the
      *                 regular user's account
      *
-     * @return true if the operation is successful, false if
-     *         the username does not correspond to an existing
-     *         regular user, or the user has insufficient
-     *         balance on his/her votes
+     * @return true  if the operation is successful, or
+     *         false if the username does not correspond
+     *               to an existing regular user, or the
+     *               user has insufficient balance on
+     *               his/her votes
      */
     public boolean useVotes(String username, int votes) {
 

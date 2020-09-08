@@ -21,7 +21,7 @@ public class UserController {
 
 
     /**
-     * The UserService instance that the controller directs user requests to
+     * The UserService instance used to access user data
      */
     private UserService userService = UserService.getInstance();
 
