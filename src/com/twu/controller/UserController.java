@@ -8,7 +8,7 @@ import com.twu.service.UserService;
 
 /**
  * The UserController is a singleton that directs user requests to the
- * UserService. Each method in the controller is a transaction
+ * corresponding services. Each method in the controller is a transaction
  */
 public class UserController {
 
