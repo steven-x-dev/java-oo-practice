@@ -27,18 +27,18 @@ public class UserController {
 
 
     /**
-     * @see UserService#findOneAdminUserByUsername(String)
-     */
-    public AdminUser findOneAdminUserByUsername(String username) {
-        return userService.findOneAdminUserByUsername(username);
-    }
-
-
-    /**
      * @see UserService#existsAdminUser(String)
      */
     public boolean existsAdminUser(String username) {
         return userService.existsAdminUser(username);
+    }
+
+
+    /**
+     * @see UserService#findOneAdminUserByUsername(String)
+     */
+    public AdminUser findOneAdminUserByUsername(String username) {
+        return userService.findOneAdminUserByUsername(username);
     }
 
 
