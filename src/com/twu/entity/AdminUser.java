@@ -8,6 +8,11 @@ package com.twu.entity;
 public class AdminUser extends User {
 
 
+    /**
+     * The stored password of the admin user.
+     * For demonstration purposes, the password
+     * is stored in plain-text and not encrypted
+     */
     private String password;
 
 
