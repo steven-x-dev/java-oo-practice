@@ -16,6 +16,9 @@ public class StringUtil {
      */
     public static boolean isNaN(String str) {
 
+        if (str == null || str.length() == 0)
+            return true;
+
         for (char c : str.toCharArray())
             if (!Character.isDigit(c)) return true;
 
