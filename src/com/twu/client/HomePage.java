@@ -1,8 +1,6 @@
 package com.twu.client;
 
-import com.twu.utility.PrintUtil;
-import com.twu.utility.StdinService;
-import com.twu.utility.StringUtil;
+import com.twu.utility.InteractionUtil;
 
 
 /**
@@ -38,41 +36,15 @@ class HomePage {
      */
     HomeOption askUserType() {
 
-        StdinService stdinService = StdinService.getInstance();
+        String title = "欢迎来到热搜排行榜，请选择您的用户类型：";
+        String optionName = "您的用户类型";
 
-        int input;
+        HomeOption option = InteractionUtil.getCorrectOption(homeOptions, title, optionName);
 
-        PrintUtil.printMessage("欢迎来到热搜排行榜，请选择您的用户类型：");
+        while (option == HomeOption.EXIT)
+            option = InteractionUtil.getCorrectOption(homeOptions, title, optionName);
 
-        while (true) {
-
-            PrintUtil.printOptions(homeOptions);
-            PrintUtil.printLine(1);
-
-            String in = stdinService.readLine();
-            PrintUtil.printLine(1);
-
-            if (StringUtil.isNaN(in)) {
-                PrintUtil.printMessage("输入不合法，请重新选择您的用户类型：");
-                continue;
-            }
-
-            input = Integer.parseInt(in);
-
-            if (input < 1 || input > homeOptions.length) {
-                PrintUtil.printMessage("输入不合法，请重新选择您的用户类型：");
-                continue;
-            }
-
-            if (input == homeOptions.length){
-                PrintUtil.printMessage("欢迎来到热搜排行榜，请选择您的用户类型：");
-                continue;
-            }
-
-            break;
-        }
-
-        return homeOptions[input - 1];
+        return option;
     }
 
 }

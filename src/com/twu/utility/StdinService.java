@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * A singleton service utility that is responsible for reading inputs from stdin
  */
-public class StdinService {
+class StdinService {
 
 
     /**
@@ -28,7 +28,7 @@ public class StdinService {
      *
      * @return the line that the user has just input into stdin
      */
-    public String readLine() {
+    String readLine() {
         if (sc == null)
             throw new IllegalStateException("the service has been disconnected by the client");
         return sc.nextLine();
@@ -39,7 +39,7 @@ public class StdinService {
      * If the service is currently disconnected, connect the service
      * by initializing the service again
      */
-    public void connect() {
+    void connect() {
         if (sc == null) init();
     }
 
@@ -47,7 +47,7 @@ public class StdinService {
     /**
      * Disconnects the service by setting the Scanner to be null
      */
-    public void disconnect() {
+    void disconnect() {
         sc = null;
     }
 
@@ -72,7 +72,7 @@ public class StdinService {
     /**
      * Return the singleton instance of StdinService
      */
-    public static StdinService getInstance() {
+    static StdinService getInstance() {
         return instance;
     }
 
