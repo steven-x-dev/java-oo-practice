@@ -8,7 +8,8 @@ public class StringUtil {
 
 
     /**
-     * Check whether a String is numeric
+     * Check whether a String is numeric. Negative numbers
+     * in this application are also considered as NaN
      *
      * @param str the string to be checked
      * @return whether the String is numeric
