@@ -161,7 +161,7 @@ public class HotSearchController {
         RegularUser authenticatedUser = userService.findOneRegularUserByUsername(username);
 
         if (authenticatedUser == null ||
-                sessionManager.exists(authenticatedUser)) {
+                !sessionManager.exists(authenticatedUser)) {
             return false;
         }
 
