@@ -154,14 +154,14 @@ public class HotSearchController {
      * @see HotSearchService#voteHotSearch(String, int)
      * @see UserService#findOneRegularUserByUsername(String)
      * @see UserService#useVotes(String, int)
-     * @see SessionManager#getActiveSession(User)
+     * @see SessionManager#exists(User)
      */
     public boolean voteHotSearch(String name, String username, int votes) {
 
         RegularUser authenticatedUser = userService.findOneRegularUserByUsername(username);
 
         if (authenticatedUser == null ||
-                sessionManager.getActiveSession(authenticatedUser) == null) {
+                sessionManager.exists(authenticatedUser)) {
             return false;
         }
 
