@@ -49,7 +49,12 @@ public class SessionManager {
      */
     public Session createSession(User user) {
 
-        destroySession(user);
+        Session activeSession = activeSessions.stream().filter(match(user)).collect(StreamUtil.limitOne());
+
+        if (activeSession != null) {
+            activeSessions.remove(activeSession);
+            activeSession.destroy();
+        }
 
         Session session = new Session(user);
         activeSessions.add(session);
@@ -62,9 +67,14 @@ public class SessionManager {
      * When a user logs out, the SessionManager will destroy
      * the session associated with that user
      */
-    public void destroySession(User user) {
+    public void destroySession(Session session) {
 
-        Session activeSession = activeSessions.stream().filter(match(user)).collect(StreamUtil.limitOne());
+        Session activeSession = null;
+
+        if (session != null && session.getUser() != null) {
+            User user = session.getUser();
+            activeSession = activeSessions.stream().filter(match(user)).collect(StreamUtil.limitOne());
+        }
 
         if (activeSession != null) {
             activeSessions.remove(activeSession);
