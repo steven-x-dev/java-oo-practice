@@ -10,16 +10,8 @@ import com.twu.utility.StringUtil;
  * the first time, or when the user has logged out.
  *
  * The HomePage will display a welcome message and ask the user for the
- * user type, either admin or regular user, or the user just wants to
+ * user type, either admin or regular user, or if the user just wants to
  * select the "EXIT" option.
- *
- * When a user type has been selected, the HomePage will ask the user
- * for his/her username. In case of an admin user, the username has
- * to match an existing record in the list of admin users, and then
- * the user has to enter the correct password in order to log in. In
- * case of a regular user, if the username matches an existing record
- * in the list of regular users, user is logged in; otherwise a new
- * user will be created and the user is logged in automatically
  */
 class HomePage {
 
