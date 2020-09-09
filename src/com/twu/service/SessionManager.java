@@ -45,7 +45,7 @@ public class SessionManager {
      * session will be destroyed
      *
      * @param user the user who is logging in
-     * @return the newly created session for the user
+     * @return a copy of the newly created session for the user
      */
     public Session createSession(User user) {
 
@@ -54,7 +54,7 @@ public class SessionManager {
         Session session = new Session(user);
         activeSessions.add(session);
 
-        return session;
+        return new Session(user);
     }
 
 
@@ -64,7 +64,7 @@ public class SessionManager {
      */
     public void destroySession(User user) {
 
-        Session activeSession = getActiveSession(user);
+        Session activeSession = activeSessions.stream().filter(match(user)).collect(StreamUtil.limitOne());
 
         if (activeSession != null) {
             activeSessions.remove(activeSession);
