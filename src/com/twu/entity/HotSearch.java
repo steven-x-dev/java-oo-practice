@@ -66,7 +66,7 @@ public class HotSearch {
 
 
     /**
-     * Generates a String representation of the hot search to be shown to the client,
+     * Generate a String representation of the hot search to be shown to the client,
      * which includes the name of the hot search and the number of votes it receives
      *
      * @return the String representation of the hot search to be shown to the client
