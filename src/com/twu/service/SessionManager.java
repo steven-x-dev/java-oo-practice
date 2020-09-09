@@ -28,14 +28,13 @@ public class SessionManager {
 
 
     /**
-     * Get the active session associated with the specified user
+     * Check whether a session with the user has already been established
      *
-     * @param user the specified user
-     * @return the active session associated with the specified user,
-     *         or null if the user has not established a session
+     * @param user the user to be checked
+     * @return whether a session with the user has already been established
      */
-    public Session getActiveSession(User user) {
-        return activeSessions.stream().filter(match(user)).collect(StreamUtil.limitOne());
+    public boolean exists(User user) {
+        return activeSessions.stream().anyMatch(match(user));
     }
 
 
