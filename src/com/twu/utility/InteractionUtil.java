@@ -39,7 +39,7 @@ public class InteractionUtil {
             String str = StdinService.getInstance().readLine();
             System.out.println();
 
-            if (StringUtil.isNaN(str)) {
+            if (isNaN(str)) {
                 System.out.println(msg);
                 continue;
             }
@@ -53,6 +53,82 @@ public class InteractionUtil {
 
             return options[number - 1];
         }
+    }
+
+
+    /**
+     * Get a non-empty String from the next line in stdin
+     *
+     * @param emptyMessage the message to display if the next line is empty
+     * @return the next line in stdin, or null if it's empty
+     */
+    public static String getNonEmptyString(String emptyMessage) {
+
+        String str = StdinService.getInstance().readLine();
+        System.out.println();
+
+        if (str.length() < 1) {
+            System.out.println(emptyMessage);
+            System.out.println();
+            return null;
+        }
+
+        return str;
+    }
+
+
+    /**
+     * Get a positive integer from the next line in stdin. If the user input is
+     * invalid, the loop doesn't stop until the the user inputs a correct value
+     *
+     * @param integerName a general description of what the integer is, displayed after
+     *                    the user has entered an invalid input to prompt the user
+     * @return a guaranteed positive integer
+     */
+    public static int getPositiveInteger(String integerName) {
+
+        String msg = String.format("输入不合法，请重新输入%s：", integerName);
+
+        while (true) {
+
+            String str = StdinService.getInstance().readLine();
+            System.out.println();
+
+            if (isNaN(str)) {
+                System.out.println(msg);
+                System.out.println();
+                continue;
+            }
+
+            int integer = Integer.parseInt(str);
+
+            if (integer < 1) {
+                System.out.println(msg);
+                System.out.println();
+                continue;
+            }
+
+            return integer;
+        }
+    }
+
+
+    /**
+     * Check whether a String is numeric. Negative numbers
+     * in this application are also considered as NaN
+     *
+     * @param str the string to be checked
+     * @return whether the String is numeric
+     */
+    private static boolean isNaN(String str) {
+
+        if (str == null || str.length() == 0)
+            return true;
+
+        for (char c : str.toCharArray())
+            if (!Character.isDigit(c)) return true;
+
+        return false;
     }
 
 
