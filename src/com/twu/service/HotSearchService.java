@@ -135,14 +135,14 @@ public class HotSearchService {
      */
     public int buyHotSearch(String name, int rank, int amount) {
 
-        int internalRank = rank - 1;
+        int index = rank - 1;
 
         HotSearch toBuy = findOneByName(name);
 
         if (toBuy == null)
             return -1;
 
-        HotSearch existing = hotSearches.get(internalRank);
+        HotSearch existing = hotSearches.get(index);
 
         int newPrice = toBuy.getAmount() + amount;
 
@@ -154,8 +154,12 @@ public class HotSearchService {
         if (existing.getAmount() >= newPrice)
             return 0;
 
-        hotSearches.remove(toBuy);
-        hotSearches.set(internalRank, toBuy);
+        toBuy.setAmount(newPrice);
+
+        int oldIndex = hotSearches.indexOf(toBuy);
+
+        hotSearches.set(index, toBuy);
+        hotSearches.remove(oldIndex);
 
         return 1;
     }
