@@ -7,6 +7,10 @@ package com.twu.entity;
 public abstract class User {
 
 
+    /**
+     * The immutable username, used as the
+     * unique identifier of an entity
+     */
     protected final String USERNAME;
 
 
