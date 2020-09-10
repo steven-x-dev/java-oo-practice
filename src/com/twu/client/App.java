@@ -58,10 +58,24 @@ public class App {
         }
     }
 
+
+    /**
+     * Provide an interface to remember the session in the client,
+     * called when login is successful in the user page
+     *
+     * @param session the client's copy of the established session if
+     *                the user is authenticated
+     */
     void setSession(Session session) {
         this.session = session;
     }
 
+
+    /**
+     * Provide an interface within the client to get the session
+     *
+     * @return the client's copy of the current session established with the server
+     */
     Session getSession() {
         return session;
     }
