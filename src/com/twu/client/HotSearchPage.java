@@ -83,6 +83,14 @@ class HotSearchPage {
         if (authenticatedUser == null || authenticatedUser.getClass() != RegularUser.class)
             return;
 
+        RegularUser regularUser = (RegularUser) authenticatedUser;
+
+        int remaining = regularUser.getVotes();
+        if (remaining < 1) {
+            System.out.println("当前余票为%d，无法投票");
+            System.out.println();
+        }
+
         if (session.getRequestParams(VOTE_HOT_SEARCH) == null)
             session.addRequest(VOTE_HOT_SEARCH, 2);
 
@@ -91,7 +99,7 @@ class HotSearchPage {
         HotSearch hs = findHotSearch("请输入您要投票的热搜名：");
         session.setParam(VOTE_HOT_SEARCH, 0, hs);
 
-        int votes = getVotes((RegularUser) authenticatedUser);
+        int votes = askVotes(regularUser);
         session.setParam(VOTE_HOT_SEARCH, 1, votes);
 
         hotSearchController.
@@ -244,19 +252,21 @@ class HotSearchPage {
      * @param regularUser the regular user who will use the votes
      * @return a viable number of votes validated by the server
      */
-    private int getVotes(RegularUser regularUser) {
+    private int askVotes(RegularUser regularUser) {
 
-        System.out.println("请输入您要投票的数量：");
+        int remaining = regularUser.getVotes();
+
+        String msg = String.format("您要投票的数量（当前剩余%d票）", remaining);
+
+        System.out.println(String.format("请输入%s：", msg));
         System.out.println();
 
         while (true) {
 
-            int votes = InteractionUtil.getPositiveInteger("您要投票的数量");
-
-            int remaining = regularUser.getVotes();
+            int votes = InteractionUtil.getPositiveInteger(msg);
 
             if (votes > remaining) {
-                System.out.println(String.format("您当前剩余%d票，请重新输入您要投票的数量：", remaining));
+                System.out.println(String.format("余票不足，请重新输入%s：", msg));
                 System.out.println();
                 continue;
             }
