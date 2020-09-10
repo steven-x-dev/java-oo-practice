@@ -174,7 +174,7 @@ class HotSearchPage {
 
 
     /**
-     * Get a viable rank that the user can buy for a hot search by the user input
+     * Get a viable rank that the user can buy for a hot search from user input
      *
      * @return a viable rank validated by the server
      */
