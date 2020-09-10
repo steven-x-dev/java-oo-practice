@@ -1,7 +1,5 @@
 package com.twu.client;
 
-import com.twu.utility.InteractionUtil;
-
 
 /**
  * The HomePage is displayed when the application has been launched for
@@ -39,10 +37,10 @@ class HomePage {
         String title = "欢迎来到热搜排行榜，请选择您的用户类型：";
         String optionName = "您的用户类型";
 
-        HomeOption option = InteractionUtil.getCorrectOption(homeOptions, title, optionName);
+        HomeOption option = Prompt.getCorrectOption(homeOptions, title, optionName);
 
         while (option == HomeOption.EXIT)
-            option = InteractionUtil.getCorrectOption(homeOptions, title, optionName);
+            option = Prompt.getCorrectOption(homeOptions, title, optionName);
 
         return option;
     }

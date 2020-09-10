@@ -1,17 +1,17 @@
-package com.twu.utility;
-
-import com.twu.client.Option;
+package com.twu.client;
 
 
 /**
- * A utility responsible for prompting the user for input, and reading the user input from stdin,
+ * A utility responsible for prompting the user for input, reading the user input from stdin,
  * and validating the user input
  */
-public class InteractionUtil {
+class Prompt {
 
 
     /**
-     * 
+     * Prompt the user to enter a valid number from the listed options, and return the corresponding
+     * Option of the number entered by the user
+     *
      * @param options the options available to the user
      * @param title the initial message displayed above the list of options, used to prompt the user
      * @param optionName a general description of what the options are, displayed above the list of
@@ -19,7 +19,7 @@ public class InteractionUtil {
      * @param <T> the type of the Option
      * @return the selected option by the user
      */
-    public static <T extends Option> T getCorrectOption(T[] options, String title, String optionName) {
+    static <T extends Option> T getCorrectOption(T[] options, String title, String optionName) {
 
         System.out.println(title);
 
@@ -36,7 +36,7 @@ public class InteractionUtil {
                 System.out.println(String.format("%d. %s", i + 1, options[i].getName()));
             System.out.println();
 
-            String str = StdinService.getInstance().readLine();
+            String str = StdinReader.getInstance().readLine();
             System.out.println();
 
             if (isNaN(str)) {
@@ -62,9 +62,9 @@ public class InteractionUtil {
      * @param emptyMessage the message to display if the next line is empty
      * @return the next line in stdin, or null if it's empty
      */
-    public static String getNonEmptyString(String emptyMessage) {
+    static String getNonEmptyString(String emptyMessage) {
 
-        String str = StdinService.getInstance().readLine();
+        String str = StdinReader.getInstance().readLine();
         System.out.println();
 
         if (str.length() < 1) {
@@ -85,13 +85,13 @@ public class InteractionUtil {
      *                    the user has entered an invalid input to prompt the user
      * @return a guaranteed positive integer
      */
-    public static int getPositiveInteger(String integerName) {
+    static int getPositiveInteger(String integerName) {
 
         String msg = String.format("输入不合法，请重新输入%s：", integerName);
 
         while (true) {
 
-            String str = StdinService.getInstance().readLine();
+            String str = StdinReader.getInstance().readLine();
             System.out.println();
 
             if (isNaN(str)) {
@@ -135,6 +135,6 @@ public class InteractionUtil {
     /**
      * Do not let this class to be instantiated
      */
-    private InteractionUtil() {}
+    private Prompt() {}
 
 }

@@ -5,7 +5,7 @@ package com.twu.client;
  * An interface for the presentation of options offered to
  * the user in different pages across the entire application
  */
-public interface Option {
+interface Option {
 
 
     /**

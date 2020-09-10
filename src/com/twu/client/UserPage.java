@@ -4,12 +4,11 @@ import com.twu.controller.UserController;
 import com.twu.entity.AdminUser;
 import com.twu.entity.RegularUser;
 import com.twu.entity.User;
+import com.twu.service.PermissionManager;
 import com.twu.service.Session;
 import com.twu.service.SessionManager;
-import com.twu.utility.*;
 
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 
 /**
@@ -79,8 +78,11 @@ class UserPage {
 
         this.context.setSession(session);
 
+        User user = session.getUser();
+        PermissionManager pm = PermissionManager.getInstance();
+
         userOptions = Arrays.stream(UserOption.values())
-                .filter(canAccessFeature(PermissionManager.grantAccess(session.getUser().getClass())))
+                .filter(pm.canAccessFeature(user))
                 .toArray(UserOption[]::new);
     }
 
@@ -100,7 +102,7 @@ class UserPage {
         String title = user.getUsername() + "你好，你可以：";
         String optionName = "您想要使用的功能";
 
-        return InteractionUtil.getCorrectOption(userOptions, title, optionName);
+        return Prompt.getCorrectOption(userOptions, title, optionName);
     }
 
 
@@ -120,7 +122,7 @@ class UserPage {
 
         while (true) {
 
-            String password = InteractionUtil.getNonEmptyString("输入不合法，请重新输入密码：");
+            String password = Prompt.getNonEmptyString("输入不合法，请重新输入密码：");
 
             if (password == null)
                 continue;
@@ -152,7 +154,7 @@ class UserPage {
 
     private AdminUser askAdminUser() {
 
-        String username = InteractionUtil.getNonEmptyString("输入不合法，请重新输入昵称：");
+        String username = Prompt.getNonEmptyString("输入不合法，请重新输入昵称：");
 
         if (username == null)
             return null;
@@ -183,7 +185,7 @@ class UserPage {
 
         while (true) {
 
-            String username = InteractionUtil.getNonEmptyString("输入不合法，请重新输入昵称：");
+            String username = Prompt.getNonEmptyString("输入不合法，请重新输入昵称：");
 
             if (username == null)
                 continue;
@@ -219,24 +221,6 @@ class UserPage {
     }
 
 
-    /**
-     * Returns a predicate that checks whether the user option is accessible
-     * to the current user by comparing the option against the accessible features
-     *
-     * @param features the accessible features of the current user
-     * @return the predicate that checks whether the option is accessible to the current user
-     */
-    private static Predicate<UserOption> canAccessFeature(Feature[] features) {
 
-        return userOption -> {
-
-            Feature f = userOption.getFeature();
-
-            for (Feature feature : features)
-                if (f == feature) return true;
-
-            return false;
-        };
-    }
 
 }

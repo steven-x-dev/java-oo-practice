@@ -5,7 +5,6 @@ import com.twu.entity.HotSearch;
 import com.twu.entity.RegularUser;
 import com.twu.entity.User;
 import com.twu.service.Session;
-import com.twu.utility.InteractionUtil;
 
 import java.util.List;
 
@@ -194,7 +193,7 @@ class HotSearchPage {
 
         while (true) {
 
-            int rank = InteractionUtil.getPositiveInteger("您要购买的排名");
+            int rank = Prompt.getPositiveInteger("您要购买的排名");
 
             if (rank > hotSearchController.getCount()) {
                 System.out.println("您要购买的热搜排名超过热搜数量，请重新输入：");
@@ -231,7 +230,7 @@ class HotSearchPage {
 
         while (true) {
 
-            int amount = InteractionUtil.getPositiveInteger("您要购买的金额");
+            int amount = Prompt.getPositiveInteger("您要购买的金额");
             session.setParam(BUY_HOT_SEARCH, 2, amount);
 
             int res = hotSearchController.buyHotSearch(
@@ -269,7 +268,7 @@ class HotSearchPage {
 
         while (true) {
 
-            int votes = InteractionUtil.getPositiveInteger(msg);
+            int votes = Prompt.getPositiveInteger(msg);
 
             if (votes > remaining) {
                 System.out.println(String.format("余票不足，请重新输入%s：", msg));
@@ -296,7 +295,7 @@ class HotSearchPage {
 
         while (true) {
 
-            String name = InteractionUtil.getNonEmptyString("热搜名不能为空，请重新输入：");
+            String name = Prompt.getNonEmptyString("热搜名不能为空，请重新输入：");
 
             if (name == null)
                 continue;
@@ -322,7 +321,7 @@ class HotSearchPage {
      */
     private String askHotSearchName() {
 
-        String name = InteractionUtil.getNonEmptyString("热搜名不能为空，请重新输入：");
+        String name = Prompt.getNonEmptyString("热搜名不能为空，请重新输入：");
 
         if (name == null)
             return null;

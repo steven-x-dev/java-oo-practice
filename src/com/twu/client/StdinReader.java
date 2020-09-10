@@ -1,4 +1,4 @@
-package com.twu.utility;
+package com.twu.client;
 
 import java.util.Scanner;
 
@@ -6,13 +6,13 @@ import java.util.Scanner;
 /**
  * A singleton service utility that is responsible for reading inputs from stdin
  */
-class StdinService {
+class StdinReader {
 
 
     /**
      * The singleton instance
      */
-    private static StdinService instance = new StdinService();
+    private static StdinReader instance = new StdinReader();
 
 
     /**
@@ -55,7 +55,7 @@ class StdinService {
     /**
      * Do not let this class to be instantiated externally
      */
-    private StdinService() {
+    private StdinReader() {
         init();
     }
 
@@ -70,9 +70,9 @@ class StdinService {
 
 
     /**
-     * Return the singleton instance of StdinService
+     * Return the singleton instance of StdinReader
      */
-    static StdinService getInstance() {
+    static StdinReader getInstance() {
         return instance;
     }
 
