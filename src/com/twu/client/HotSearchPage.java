@@ -200,6 +200,13 @@ class HotSearchPage {
     }
 
 
+    /**
+     * Get a viable amount to buy a certain rank for a hot search from user input.
+     * If the other hot search at the given rank is different from the one being
+     * bought and the amount of that hot search is equal to or greater than the
+     * current amount, the request will be rejected and the user has to enter
+     * a greater amount and submit the request again, until the purchase succeeds
+     */
     private void askAmountThenSubmitRequest() {
 
         System.out.println("请输入您要购买的金额：");
