@@ -2,7 +2,6 @@ package com.twu.service;
 
 import com.twu.entity.HotSearch;
 import com.twu.entity.SuperHotSearch;
-import com.twu.utility.StreamUtil;
 
 import java.util.ArrayList;
 import java.util.List;
