@@ -51,6 +51,9 @@ class HotSearchPage {
      */
     void buyHotSearch() {
 
+        if (!requireNonEmptyHotSearch())
+            return;
+
         Session session = context.getSession();
 
         if (session.getRequestParams(BUY_HOT_SEARCH) == null)
@@ -75,6 +78,9 @@ class HotSearchPage {
      * Prompt the user to vote a hot search
      */
     void voteHotSearch() {
+
+        if (!requireNonEmptyHotSearch())
+            return;
 
         Session session = context.getSession();
 
@@ -328,6 +334,27 @@ class HotSearchPage {
         }
 
         return name;
+    }
+
+
+    /**
+     * Check if the hot search list is empty, and print
+     * a message if it is empty
+     *
+     * @return true  if the hot search list is not empty, or
+     *         false if the hot search list is empty
+     */
+    private boolean requireNonEmptyHotSearch() {
+
+        if (hotSearchController.getCount() == 0) {
+
+            System.out.println("热搜列表为空，请先添加热搜");
+            System.out.println();
+
+            return false;
+        }
+
+        return true;
     }
 
 }
